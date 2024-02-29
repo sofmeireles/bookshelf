@@ -1,0 +1,25 @@
+<div class="max-w-4xl mx-auto px-4 py-8">
+  <div class="bg-gray-100 shadow overflow-hidden sm:rounded-lg flex">
+    <div class="flex-none w-52 relative">
+      <%= image_tag @book.cover_url, alt: @book.title, class: "absolute inset-0 w-full h-full object-cover rounded-lg" %>
+    </div>
+
+    <div class=" flex-auto p-4 ml-2">
+      <div class="flex flex-wrap">
+        <h3 class="flex-auto text-2xl font-bold text-gray-900">
+          <%= @book.title %>
+        </h3>
+      </div>
+      <div class="w-fit px-3 py-1 rounded-lg flex-none mt-2 order-1 font-bold text-lg text-white bg-teal-600">
+        <%= @book.genre.humanize %>
+      </div>
+      <p class="text-gray-500 mt-4">
+        <%= @book.description %>
+      </p>
+    </div>
+  </div>
+
+  <div class="mr-auto w-full text-center mt-4">
+    <%= link_to 'Edit book', edit_book_path(@book), class: 'inline-block rounded-lg px-8 py-3 bg-yellow-600 hover:bg-yellow-700 text-white font-bold' %>
+  </div>
+</div>

@@ -31,3 +31,18 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        reservation:
+          attributes:
+            base:
+              book_already_reserved: "The book cannot be double reserved."
+              user_has_reservations: "The user cannot reserve multiple books."
+            returned_on:
+              past_date: "The return date cannot be in the past."
+              cannot_be_revised: "The return date cannot be revised once set."
+  notices:
+    books:
+      create_success: "%{book_title} was successfully added to the bookshelf."
+      update_success: "%{book_title} was successfully updated."

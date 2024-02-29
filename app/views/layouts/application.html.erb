@@ -12,8 +12,25 @@
 
   <body>
     <h1 class='text-xl font-bold m-3'>Bookshelf</h1>
+    <% flash.each do |type, content|%>
+      <div>
+        <% if type == 'notice'%>
+          <div class='flex bg-green-50 mr-8 w-fit p-3 mb-8 mr-5 rounded-lg shadow fixed bottom-0 right-10 cursor-pointer'>
+            <%= image_tag('check-circle.svg', class: 'mr-1 w-5')%>
+            <p> <%= content %> </p>
+          </div>
+        <% elsif type == 'alert'%>
+        <div class='fixed bottom-0 right-0'>
+          <% content.each do |message|%>
+            <div class='flex bg-red-50 w-64 p-3 mb-8 rounded-lg shadow cursor-pointer'>
+              <%= image_tag('x-circle.svg', class: 'mr-1 w-5')%>
+              <p> <%= message %> </p>
+            </div>
+          <%end%>
+        </div>
+        <%end%>
+      </div>
+    <%end%>
     <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
   </body>
 </html>

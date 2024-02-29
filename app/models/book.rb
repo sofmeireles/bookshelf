@@ -1,3 +1,5 @@
+require 'uri'
+
 class Book < ApplicationRecord
     enum genre: {
         software_engineering: 0,
@@ -20,7 +22,6 @@ class Book < ApplicationRecord
 
 
     validates :title, :description, :cover_url, presence: true
-
 
     def available?
         active_reservation.blank?

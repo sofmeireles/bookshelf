@@ -1,0 +1,22 @@
+<%= form_with(model: @book, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4") do |form|%>
+    <div class="mb-4">
+        <%= form.label :title, class: 'block text-gray-700 text-base font-bold mb-2' %>
+        <%= form.text_field :title, class: 'w-full rounded-lg' %>
+    </div>
+    <div class="mb-6">
+        <%= form.label :genre, class: 'block text-gray-700 text-base font-bold mb-2' %>
+        <%= form.select :genre, formatted_genres, {}, { class: 'mb-2 w-full rounded-lg', selected: true }%>
+    </div>
+    <div class="mb-6">
+        <%= form.label :description, class: 'block text-gray-700 text-base font-bold mb-2' %>
+        <%= form.text_area :description, rows: 10, class: 'w-full rounded-lg' %>
+    </div>
+    <div class="mb-6">
+        <%= form.label :cover_url, class: 'block text-gray-700 text-base font-bold mb-2' %>
+        <%= form.text_field :cover_url, class: 'w-full rounded-lg'%>
+    </div>
+
+    <div class="pt-8 mx-auto">
+        <%= form.submit class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline'%>
+    </div>
+<% end %>
