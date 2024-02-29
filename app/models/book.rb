@@ -1,5 +1,3 @@
-require 'uri'
-
 class Book < ApplicationRecord
     enum genre: {
         software_engineering: 0,
