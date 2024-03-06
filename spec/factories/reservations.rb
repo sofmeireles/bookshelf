@@ -3,8 +3,6 @@ FactoryBot.define do
     association :user
     association :book
 
-    returned_on {nil}
-
     trait :returned do
       returned_on { Date.tomorrow }
     end
