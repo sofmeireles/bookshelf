@@ -1,0 +1,12 @@
+<div style="font-family: Arial, sans-serif; color: #333;">
+  <p>Hello <span style="font-weight: bold;"><%= @recipient.first_name %></span>,</p>
+
+  <p style="margin-top: 16px;">A book has made its way out of the Bookshelf!</p>
+  <p style="margin-top: 8px;">
+    <span style="font-weight: bold;"><%= @reserver.full_name %></span>
+    started reading <span style="font-weight: bold;"><%= @book.title %>.</span>
+  </p>
+
+  <p style="margin-top: 32px;">Best,</p>
+  <p>The Bookshelf team</p>
+</div>

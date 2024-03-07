@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
-    before_action :set_book, only: %i[show edit update]
+    before_action :set_book, only: %i[show edit update reserve]
+    before_action :authenticate_user!
 
     def index
         @books = Book.all.order(created_at: :desc)
@@ -36,6 +37,18 @@ class BooksController < ApplicationController
             render :edit, status: :unprocessable_entity
         end
     end
+
+    def reserve 
+        result = ReserveBook.new(@book, current_user.id).perform 
+
+        if result.success?
+            redirect_to(books_path, notice: I18n.t('notices.books.reserve_success', book_title: @book.title))
+        else
+            flash.now[:alert] = result.errors
+            render :new, status: :unprocessable_entity
+        end
+    end
+
       
     private
 
