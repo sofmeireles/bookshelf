@@ -1,18 +1,21 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_reservations, only: [:index]
-  before_action :set_active_reservation, only: [:update]
+  before_action :set_active_reservation, only: [:show, :update]
 
   def index; end
 
   def edit; end
+
+  def show; end
 
   def update 
       result = ReturnBook.new(@active_reservation).perform
 
       if result.success?
         respond_to do |format|
-          format.html { render partial: 'reservations/row', locals: { reservation: @active_reservation } }
+          format.turbo_stream
+          flash.now[:notice] = I18n.t('notices.books.return_success', book_title: @active_reservation.book.title)
         end
       else
           flash.now[:alert] = result.errors

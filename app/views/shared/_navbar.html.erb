@@ -2,7 +2,9 @@
   <div class="p-4">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center">
-        <%= link_to 'Bookshelf', root_path, class: "font-bold text-xl" %>
+        <%= link_to(root_path, 'data-turbo': false) do %>
+          <h2 class="font-bold text-xl">Bookshelf</h2>
+        <% end %>
       </div>
       <div class="flex items-center gap-4">
         <%= link_to(reservations_path) do %>

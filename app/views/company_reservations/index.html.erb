@@ -1,0 +1,10 @@
+<%= turbo_frame_tag("company_reservations") do %>
+  <% unless @company_reservations.empty? %>
+    <div class="flex flex-col items-center bg-gray-100 shadow px-6 py-4 ml-16 mt-10 rounded-lg">
+      <span class="font-bold text-xl text-gray-900">Company reading list:</span>
+      <% @company_reservations.each do |reservation| %>
+        <%= render partial: 'company_reservations/reservation', locals: { company_reservation: reservation } %>      
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

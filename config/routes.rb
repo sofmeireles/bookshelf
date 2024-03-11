@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :company_reservations, only: [:index], path: 'company-reservations'
+
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
