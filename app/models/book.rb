@@ -21,7 +21,6 @@ class Book < ApplicationRecord
 
     validates :title, :description, :cover_url, presence: true
 
-
     def available?
         active_reservation.blank?
     end
