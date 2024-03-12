@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-    before_action :set_book, only: %i[show edit update reserve]
+    before_action :set_book, only: %i[show edit update reserve destroy]
     before_action :authenticate_user!
 
     def index
@@ -37,6 +37,21 @@ class BooksController < ApplicationController
             render :edit, status: :unprocessable_entity
         end
     end
+
+    def destroy 
+        result = DeleteBook.new(@book).perform
+
+        if result.success?
+            respond_to do |format|
+                format.turbo_stream
+                flash.now[:notice] = I18n.t('notices.books.delete_success', book_title: result.book.title)
+            end
+        else
+            flash.now[:alert] = result.errors
+            render :edit, status: :unprocessable_entity
+        end
+    end
+    
 
     def reserve 
         result = ReserveBook.new(@book, current_user.id).perform 

@@ -1,7 +1,7 @@
 <%= turbo_frame_tag("active_reservation_badge") do %>
 <div class="flex flex-col items-center bg-gray-100 shadow px-6 py-4 ml-16 mt-10 rounded-lg">
   <span class="font-bold text-xl text-gray-900">You are reading:</span>
-  <div class="flex flex-col items-center bg-white py-2 px-8 my-4">
+  <div class="flex flex-col bg-white py-6 px-8 my-4">
     <div class="text-lg text-gray-900">
         <%= link_to book_path(@active_reservation.book), 'data-turbo-frame': '_top' do %>
           <span class="font-semibold hover:underline"><%= @active_reservation.book.title %></span>

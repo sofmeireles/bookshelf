@@ -11,29 +11,9 @@
 
   <div class='col-span-2 container mx-auto my-5 mr-[20%]'>
     <% @books.each do |book| %>
-      <div class='flex bg-white shadow-lg rounded-lg my-4 overflow-hidden'>
-        <% if book.cover_url.present? %>
-          <div class="flex-none w-48 h-64 relative">
-            <%= image_tag(book.cover_url, alt: book.title, class: "absolute inset-0 w-full h-full object-cover object-center") %> <!-- Added object-center -->
-          </div>
-        <% end %>
-
-        <div class="flex flex-auto flex-row justify-between p-6">
-          <div>
-              <div class="flex flex-wrap">
-                  <%= link_to book_path(book) do %>
-                      <h1 class='flex-auto text-xl font-bold mb-3 hover:underline cursor-pointer'><%= book.title %></h1>
-                  <% end %>
-              </div>
-              <p class="mt-4 text-gray-700 max-w-xl">
-              <%= truncate(book.description, length: 370) %>
-              </p>
-          </div>
-          <div class="m-auto text-center">
-              <%= link_to('Edit', edit_book_path(book), class: 'inline-block rounded-lg px-8 py-3 bg-yellow-600 hover:bg-yellow-700 text-white font-bold') %>
-          </div>
-        </div>
-      </div>
+      <%= turbo_frame_tag("#{dom_id(book)}_card") do %>
+        <%= render partial: 'books/card', locals: { book: book } %>
+      <% end %>
     <% end %>
 
     <div class="mr-auto w-full text-right mt-4">

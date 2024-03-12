@@ -1,0 +1,4 @@
+enqueue_book_progress_email:
+  cron: '32 15 * * *'
+  class: 'EnqueueBookProgressEmailJob'
+  queue: 'low'

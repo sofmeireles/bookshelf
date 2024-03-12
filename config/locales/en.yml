@@ -48,3 +48,4 @@ en:
       update_success: "%{book_title} was successfully updated."
       reserve_success: "%{book_title} was successfully reserved."
       return_success: "%{book_title} was successfully returned."
+      delete_success: "%{book_title} was successfully deleted from the bookshelf."
