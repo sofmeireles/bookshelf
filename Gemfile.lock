@@ -99,12 +99,17 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
     erubi (1.12.0)
+    et-orbi (1.2.8)
+      tzinfo
     factory_bot (6.4.6)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
     ffaker (2.20.0)
+    fugit (1.10.1)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hotwire-rails (0.1.3)
@@ -151,12 +156,15 @@ GEM
     net-smtp (0.4.0.1)
       net-protocol
     nio4r (2.7.0)
+    nokogiri (1.16.2-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     public_suffix (5.0.4)
     puma (5.6.8)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.7.3)
     rack (2.2.8.1)
     rack-test (2.1.0)
@@ -235,6 +243,10 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.19.0)
+    sidekiq-cron (1.12.0)
+      fugit (~> 1.8)
+      globalid (>= 1.0.1)
+      sidekiq (>= 6)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -242,8 +254,11 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.7.2-x86_64-darwin)
     sqlite3 (1.7.2-x86_64-linux)
     stimulus-rails (1.3.3)
+      railties (>= 6.0.0)
+    tailwindcss-rails (2.3.0-x86_64-darwin)
       railties (>= 6.0.0)
     tailwindcss-rails (2.3.0-x86_64-linux)
       railties (>= 6.0.0)
@@ -271,6 +286,7 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
+  x86_64-darwin-23
   x86_64-linux
 
 DEPENDENCIES
@@ -293,6 +309,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers (~> 5.0)
   sidekiq (~> 7.2)
+  sidekiq-cron
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
@@ -302,7 +319,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.0.2p107
+   ruby 3.3.0p0
 
 BUNDLED WITH
    2.3.19

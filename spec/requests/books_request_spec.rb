@@ -134,24 +134,42 @@ RSpec.describe 'Books' do
         end
 
 
+        context 'when user is not logged in' do
+            let(:book_params) do 
+                {
+                    title: FFaker::Book.title,
+                    genre: Book.genres.keys.sample
+                }
+            end
+
+            it 'redirect to login' do
+                patch book_path(book), params: { book: book_params }
+
+                aggregate_failures do
+                    expect(response).to have_http_status(:found)
+                    expect(book.reload.title).not_to eq(book_params[:title])
+                end
+            end
+        end
+
+
 
     end
 
-
-    describe '#POST reserve' do
-        let(:book) { create(:book) }
+    describe '#DELETE destroy' do
+        let!(:book) { create(:book) }
+        before { create(:reservation, book: book) }
 
         context 'when user is logged in' do
             include_context 'with logged user'
 
-            context "when the params are valid" do
-                it "creates a new reservation and redirects" do
-                    aggregate_failures do
-                        expect{ post reserve_book_path(book.id) }.to change(Reservation, :count).by(1)
-                        expect(response).to redirect_to(books_path)
-                        expect(response).to have_http_status(:found)
-                        expect(flash[:notice]).to eq(I18n.t('notices.books.reserve_success', book_title: book.title)) 
-                    end
+            it "deletes the book and the reservations" do
+                aggregate_failures do
+                    expect{ delete book_path(book.id) }.to change(Book, :count).by(-1)
+                                                        .and change(Reservation, :count).by(-1)
+                    expect(response).to redirect_to(books_path)
+                    expect(response).to have_http_status(:found)
+                    expect(flash[:notice]).to eq(I18n.t('notices.books.delete_success', book_title: book.title)) 
                 end
             end
         end
@@ -159,7 +177,8 @@ RSpec.describe 'Books' do
         context 'when user is not logged in' do
             it 'redirect to login' do
                 aggregate_failures do
-                    expect{ post reserve_book_path(book.id) }.not_to change(Reservation, :count)
+                    expect{ delete book_path(book.id) }.to change(Book, :count).by(0)
+                                                        .and change(Reservation, :count).by(0)
                     expect(response).to have_http_status(:found)
                 end
             end
