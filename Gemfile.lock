@@ -85,6 +85,7 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     concurrent-ruby (1.2.3)
+    connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
     debug (1.7.1)
@@ -118,6 +119,10 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.9.0)
+      launchy (>= 2.2, < 3)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -182,6 +187,8 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.1.0)
     redis (4.8.1)
+    redis-client (0.21.0)
+      connection_pool
     regexp_parser (2.9.0)
     reline (0.4.3)
       io-console (~> 0.5)
@@ -205,6 +212,11 @@ GEM
       rspec-expectations (~> 3.12)
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
+    rspec-sidekiq (4.1.0)
+      rspec-core (~> 3.0)
+      rspec-expectations (~> 3.0)
+      rspec-mocks (~> 3.0)
+      sidekiq (>= 5, < 8)
     rspec-support (3.13.1)
     rubyzip (2.3.2)
     selenium-webdriver (4.18.1)
@@ -214,6 +226,11 @@ GEM
       websocket (~> 1.0)
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
+    sidekiq (7.2.2)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.19.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -262,12 +279,15 @@ DEPENDENCIES
   ffaker (~> 2.20.0)
   importmap-rails
   jbuilder
+  letter_opener
   puma (~> 5.0)
   rails (~> 7.0.8)
   redis (~> 4.0)
   rspec-rails (~> 6.0.0)
+  rspec-sidekiq
   selenium-webdriver
   shoulda-matchers (~> 5.0)
+  sidekiq (~> 7.2)
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
