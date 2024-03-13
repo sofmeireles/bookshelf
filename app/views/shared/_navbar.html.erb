@@ -1,0 +1,21 @@
+<%if user_signed_in? %>
+  <div class="p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center">
+        <%= link_to 'Bookshelf', root_path, class: "font-bold text-xl" %>
+      </div>
+      <div class="flex items-center gap-4">
+        <%= link_to(reservations_path) do %>
+          <%= image_tag('bookmark-white.svg', class: 'mr-1 w-5 ') %>
+        <% end %>
+        <div class="flex">
+          <%= image_tag('user.svg', class: 'mr-1 w-5') %>
+          <span> <%= current_user.first_name %> </span>
+        </div>
+        <%= button_to(destroy_user_session_path, method: :delete) do %>
+          <%= image_tag('logout.svg', class: 'mr-1 w-5') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

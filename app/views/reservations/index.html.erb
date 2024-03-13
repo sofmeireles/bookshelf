@@ -1,0 +1,10 @@
+<div class="mr-[15%] ml-[15%] mt-16">
+  <h1 class="text-3xl font-bold mb-8">My reservations</h1>
+
+  <table class="min-w-full divide-y divide-gray-200">
+    <tbody class="bg-white divide-y divide-gray-200">
+      <% @reservations.each do |reservation| %>
+<%= render partial: 'reservations/row', locals: { reservation: reservation } %>      <% end %>
+    </tbody>
+  </table>
+</div>

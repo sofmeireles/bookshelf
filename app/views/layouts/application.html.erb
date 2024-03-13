@@ -6,12 +6,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-    <h1 class='text-xl font-bold m-3'>Bookshelf</h1>
+    <%= render "shared/navbar" %>
     <% if user_signed_in? %>
       <% flash.each do |type, content|%>
         <div>
@@ -21,14 +19,14 @@
               <p> <%= content %> </p>
             </div>
           <% elsif type == 'alert'%>
-          <div class='fixed bottom-0 right-0'>
-            <% content.each do |message|%>
-              <div class='flex bg-red-50 w-64 p-3 mb-4 mr-8 rounded-lg shadow cursor-pointer'>
-                <%= image_tag('x-circle.svg', class: 'mr-1 w-5')%>
-                <p> <%= message %> </p>
-              </div>
-            <%end%>
-          </div>
+            <div class='fixed bottom-0 right-0'>
+              <% content.each do |message|%>
+                <div class='flex bg-red-50 w-64 p-3 mb-4 mr-8 rounded-lg shadow cursor-pointer'>
+                  <%= image_tag('x-circle.svg', class: 'mr-1 w-5')%>
+                  <p> <%= message %> </p>
+                </div>
+              <%end%>
+            </div>
           <%end%>
         </div>
       <%end%>
