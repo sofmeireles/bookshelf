@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-    before_action :set_book, only: %i[show edit update reserve]
     before_action :authenticate_user!
+    before_action :set_book, only: %i[show edit update reserve]
 
     def index
         @books = Book.all.order(created_at: :desc)
