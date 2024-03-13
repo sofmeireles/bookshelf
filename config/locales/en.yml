@@ -46,3 +46,4 @@ en:
     books:
       create_success: "%{book_title} was successfully added to the bookshelf."
       update_success: "%{book_title} was successfully updated."
+      reserve_success: "%{book_title} was successfully reserved."

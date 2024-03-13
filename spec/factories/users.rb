@@ -7,5 +7,9 @@ FactoryBot.define do
     end
     
     password {"password"}
+
+    trait :is_admin do
+      is_admin { true }
+    end
   end
 end

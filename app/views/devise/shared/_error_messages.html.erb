@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+  <div class='fixed bottom-0 right-0'>
+    <% resource.errors.full_messages.each do |message|%>
+      <div class='flex bg-red-50 w-64 p-3 mb-4 mr-8 rounded-lg shadow cursor-pointer'>
+        <%= image_tag('x-circle.svg', class: 'mr-1 w-5')%>
+        <p> <%= message %> </p>
+      </div>
+    <%end%>
+  </div>
+<% end %>
